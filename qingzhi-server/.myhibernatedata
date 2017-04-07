@@ -1,0 +1,20 @@
+#MyEclipse Hibernate Properties
+#Wed Apr 05 17:15:20 CST 2017
+genBasicCompId=true
+sessionFactoryName=com.whitehorse.qingzhi.entity.HibernateSessionFactory
+profile=
+daoSFId=
+jndiPath=
+detectM2M=false
+reStrategyClass=
+detectO2O=false
+springDaoFile=
+useJavaTypes=true
+keyGenerator=
+genVersionTag=false
+sessionFactoryId=sessionFactory
+basePersistenceClass=
+genAnnotations=true
+reSettingsFile=
+configFile=/qingzhi-server/src/main/resources/spring-hibernate.xml
+createConfigFile=true
