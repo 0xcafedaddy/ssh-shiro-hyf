@@ -3,12 +3,10 @@ package com.whitehorse.qingzhi.web.taglib;
 import org.springframework.util.CollectionUtils;
 
 import com.whitehorse.qingzhi.entity.App;
-import com.whitehorse.qingzhi.entity.Organization;
 import com.whitehorse.qingzhi.entity.Resource;
 import com.whitehorse.qingzhi.entity.Role;
 import com.whitehorse.qingzhi.entity.User;
 import com.whitehorse.qingzhi.service.AppService;
-import com.whitehorse.qingzhi.service.OrganizationService;
 import com.whitehorse.qingzhi.service.ResourceService;
 import com.whitehorse.qingzhi.service.RoleService;
 import com.whitehorse.qingzhi.service.UserService;
@@ -45,35 +43,6 @@ public class Functions {
         return app.getName();
     }
 
-    public static String organizationName(Long organizationId) {
-        Organization organization = getOrganizationService().findOne(organizationId);
-        if(organization == null) {
-            return "";
-        }
-        return organization.getName();
-    }
-
-    public static String organizationNames(Collection<Long> organizationIds) {
-        if(CollectionUtils.isEmpty(organizationIds)) {
-            return "";
-        }
-
-        StringBuilder s = new StringBuilder();
-        for(Long organizationId : organizationIds) {
-            Organization organization = getOrganizationService().findOne(organizationId);
-            if(organization == null) {
-                return "";
-            }
-            s.append(organization.getName());
-            s.append(",");
-        }
-
-        if(s.length() > 0) {
-            s.deleteCharAt(s.length() - 1);
-        }
-
-        return s.toString();
-    }
     public static String roleName(Long roleId) {
         Role role = getRoleService().findOne(roleId);
         if(role == null) {
@@ -132,7 +101,6 @@ public class Functions {
         return s.toString();
     }
 
-    private static OrganizationService organizationService;
     private static RoleService roleService;
     private static ResourceService resourceService;
     private static UserService userService;
@@ -152,12 +120,6 @@ public class Functions {
         return appService;
     }
 
-    public static OrganizationService getOrganizationService() {
-        if(organizationService == null) {
-            organizationService = SpringUtils.getBean(OrganizationService.class);
-        }
-        return organizationService;
-    }
 
     public static RoleService getRoleService() {
         if(roleService == null) {

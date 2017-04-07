@@ -2,9 +2,11 @@ package com.whitehorse.qingzhi.web.controller;
 
 import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.UnknownAccountException;
+import org.apache.shiro.authz.UnauthorizedException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -30,6 +32,12 @@ public class LoginController {
         model.addAttribute("error", error);
         return "login";
     }
-
+    @RequestMapping(value = "/unauthorized"    )
+    public ModelAndView unauthorized(HttpServletRequest req, UnauthorizedException e) {
+    	ModelAndView mv = new ModelAndView();
+        mv.addObject("exception", e);
+        mv.setViewName("unauthorized");
+        return mv;
+    }
 
 }

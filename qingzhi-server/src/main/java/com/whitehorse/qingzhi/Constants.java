@@ -2,7 +2,7 @@ package com.whitehorse.qingzhi;
 /**
 * @author hyf
 * @date 2017年4月5日
-* @description 
+* @description 相关配置
 */
 public class Constants {
 	public static final String CURRENT_USER = "user";

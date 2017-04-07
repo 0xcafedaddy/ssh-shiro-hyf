@@ -12,7 +12,7 @@ import org.apache.shiro.cache.CacheManager;
 /**
 * @author hyf
 * @date 2017年4月6日
-* @description 
+* @description 密码登陆次数限定
 */
 public class RetryLimitHashedCredentialsMatcher extends HashedCredentialsMatcher{
 	private Cache<String, AtomicInteger> passwordRetryCache;

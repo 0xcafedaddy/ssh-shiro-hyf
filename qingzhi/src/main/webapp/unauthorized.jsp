@@ -6,6 +6,6 @@
 </head>
 <body>
 
-<div class="error">您没有权限[${exception.message}]</div>
+<div class="error">您没有该权限[${exception.message}]</div>
 </body>
 </html>

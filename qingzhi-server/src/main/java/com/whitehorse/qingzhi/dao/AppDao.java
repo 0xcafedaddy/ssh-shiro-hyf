@@ -1,6 +1,7 @@
 package com.whitehorse.qingzhi.dao;
 
 
+
 import java.util.List;
 
 import com.whitehorse.qingzhi.entity.App;
@@ -8,11 +9,11 @@ import com.whitehorse.qingzhi.entity.App;
 /**
 * @author hyf
 * @date 2017年4月5日
-* @description 
+* @description 负责应用的crud
 */
-public interface AppDao {
+public interface AppDao{
 
-    public App createApp(App app);
+	public App createApp(App app);
     public App updateApp(App app);
     public void deleteApp(Long appId);
 

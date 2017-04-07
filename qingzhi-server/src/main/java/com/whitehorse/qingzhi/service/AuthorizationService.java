@@ -7,10 +7,10 @@ import java.util.Set;
 import com.whitehorse.qingzhi.entity.Authorization;
 
 /**
- * <p>User: Zhang Kaitao
- * <p>Date: 14-1-28
- * <p>Version: 1.0
- */
+* @author hyf
+* @date 2017年4月5日
+* @description 权限的CRUD
+*/
 public interface AuthorizationService {
 
 

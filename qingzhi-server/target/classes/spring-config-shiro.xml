@@ -56,13 +56,15 @@
     </bean>
 
     <!-- 会话DAO -->
-    <bean id="sessionDAO" class="com.whitehorse.qingzhi.session.dao.MySqlSessionDAO">
+    <!-- <bean id="sessionDAO" class="com.whitehorse.qingzhi.session.dao.MySqlSessionDAO"> --><!-- 自定义会话处理 -->
+    <bean id="sessionDAO" class="org.apache.shiro.session.mgt.eis.EnterpriseCacheSessionDAO">
         <property name="activeSessionsCacheName" value="shiro-activeSessionCache"/>
         <property name="sessionIdGenerator" ref="sessionIdGenerator"/>
     </bean>
 
     <!-- 会话验证调度器 -->
-    <bean id="sessionValidationScheduler" class="com.whitehorse.qingzhi.session.scheduler.MySqlSessionValidationScheduler">
+    <!-- <bean id="sessionValidationScheduler" class="com.whitehorse.qingzhi.session.scheduler.MySqlSessionValidationScheduler"> --><!-- 自定义会话验证，配合mysqlsessiondao使用 -->
+    <bean id="sessionValidationScheduler" class="org.apache.shiro.session.mgt.ExecutorServiceSessionValidationScheduler">
         <property name="interval" value="1800000"/>
         <property name="sessionManager" ref="sessionManager"/>
     </bean>

@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.whitehorse.qingzhi.entity.User;
-import com.whitehorse.qingzhi.service.OrganizationService;
 import com.whitehorse.qingzhi.service.UserService;
 
 /**
@@ -24,8 +23,6 @@ public class UserController {
 
     @Autowired
     private UserService userService;
-    @Autowired
-    private OrganizationService organizationService;
 
     @RequiresPermissions("user:view")
     @RequestMapping(method = RequestMethod.GET)
@@ -103,6 +100,6 @@ public class UserController {
     }
 
     private void setCommonData(Model model) {
-        model.addAttribute("organizationList", organizationService.findAll());
+        //model.addAttribute("organizationList", organizationService.findAll());
     }
 }

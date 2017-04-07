@@ -8,6 +8,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.whitehorse.qingzhi.entity.User;
 import com.whitehorse.qingzhi.service.UserService;
+import com.whitehorse.qingzhi.shiro.spring.SpringUtils;
 
 /**
 * @author hyf
@@ -22,7 +23,7 @@ public class UserServiceTest {
 	@Test
 	public void testFindUserByName(){
 		
-		/*User user = userService.findByUsername("admin");
-		System.out.println(user);*/
+		User user = userService.findByUsername("admin");
+		System.out.println(user);
 	}
 }

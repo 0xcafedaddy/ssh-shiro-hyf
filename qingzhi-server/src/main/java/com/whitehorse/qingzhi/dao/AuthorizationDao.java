@@ -8,7 +8,7 @@ import com.whitehorse.qingzhi.entity.Authorization;
 /**
 * @author hyf
 * @date 2017年4月5日
-* @description 
+* @description 权限CRUD
 */
 public interface AuthorizationDao {
 
