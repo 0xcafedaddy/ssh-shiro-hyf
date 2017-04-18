@@ -1,10 +1,10 @@
 package com.whitehorse.qingzhi.service;
 
 
-import java.util.List;
-import java.util.Set;
 
-import com.whitehorse.qingzhi.entity.Authorization;
+import java.util.List;
+
+import com.whitehorse.qingzhi.entity.ManagerAuth;
 
 /**
 * @author hyf
@@ -14,26 +14,26 @@ import com.whitehorse.qingzhi.entity.Authorization;
 public interface AuthorizationService {
 
 
-    public Authorization createAuthorization(Authorization authorization);
-    public Authorization updateAuthorization(Authorization authorization);
-    public void deleteAuthorization(Long authorizationId);
-
-    public Authorization findOne(Long authorizationId);
-    public List<Authorization> findAll();
-
-    /**
-     * 根据AppKey和用户名查找其角色
-     * @param username
-     * @return
-     */
-    public Set<String> findRoles(String appKey, String username);
+	/**
+	 * 添加权限
+	 * @param authorization
+	 * @return
+	 */
+    Integer createAuthorization(ManagerAuth authorization);
+    
 
     /**
-     * 根据AppKey和用户名查找权限字符串
-     * @param username
+     * 根据权限名字获取权限
+     * @param authName
      * @return
      */
-    public Set<String> findPermissions(String appKey, String username);
-
-
+    List<ManagerAuth> findAuthByName(String authName);
+    
+    /**
+     * 获取所有权限
+     * @return
+     */
+    List<ManagerAuth> findAll();
+    
+    
 }

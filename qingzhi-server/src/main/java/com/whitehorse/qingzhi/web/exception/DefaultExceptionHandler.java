@@ -4,9 +4,14 @@ import org.apache.shiro.authz.UnauthorizedException;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.context.request.NativeWebRequest;
-import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.context.request.WebRequest;
+
+import com.whitehorse.qingzhi.Constants;
+import com.whitehorse.qingzhi.result.ResultFactory;
+import com.whitehorse.qingzhi.result.ResultInfo;
 
 
 /**
@@ -23,10 +28,20 @@ public class DefaultExceptionHandler {
      */
     @ExceptionHandler({UnauthorizedException.class})
     @ResponseStatus(HttpStatus.UNAUTHORIZED)
-    public ModelAndView processUnauthenticatedException(NativeWebRequest request, UnauthorizedException e) {
-        ModelAndView mv = new ModelAndView();
-        mv.addObject("exception", e);
-        mv.setViewName("unauthorized");
-        return mv;
+    public @ResponseBody ResultInfo processUnauthenticatedException(NativeWebRequest request, UnauthorizedException e) {
+        
+    	ResultInfo resultInfo = ResultFactory.getInstance(Constants.NOAUTH_CODE, null);
+    	
+        return resultInfo;
+    }
+    
+    @ExceptionHandler(RuntimeException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public @ResponseBody ResultInfo requestParamException(Exception exception, WebRequest request){  
+    	
+    	ResultInfo resultInfo = ResultFactory.getInstance(Constants.PARAM_ERRORCODE, null);
+    	
+    	return resultInfo;
+    	
     }
 }

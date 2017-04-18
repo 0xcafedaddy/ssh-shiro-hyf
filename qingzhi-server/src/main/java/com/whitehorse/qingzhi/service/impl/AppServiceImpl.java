@@ -10,10 +10,10 @@ import com.whitehorse.qingzhi.service.AppService;
 import java.util.List;
 
 /**
- * <p>User: Zhang Kaitao
- * <p>Date: 14-1-28
- * <p>Version: 1.0
- */
+* @author hyf
+* @date 2017年4月11日
+* @description 
+*/
 @Service
 
 public class AppServiceImpl implements AppService {

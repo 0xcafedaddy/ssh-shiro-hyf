@@ -18,10 +18,10 @@ import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.TimeUnit;
 
 /**
- * <p>User: Zhang Kaitao
- * <p>Date: 14-2-9
- * <p>Version: 1.0
- */
+* @author hyf
+* @date 2017年4月11日
+* @description 
+*/
 public class MySqlSessionValidationScheduler implements SessionValidationScheduler, Runnable {
 
     @Autowired
@@ -63,7 +63,6 @@ public class MySqlSessionValidationScheduler implements SessionValidationSchedul
      * Creates a single thread {@link java.util.concurrent.ScheduledExecutorService} to validate sessions at fixed intervals
      * and enables this scheduler. The executor is created as a daemon thread to allow JVM to shut down
      */
-    //TODO Implement an integration test to test for jvm exit as part of the standalone example
     // (so we don't have to change the unit test execution model for the core module)
     public void enableSessionValidation() {
         if (this.interval > 0l) {

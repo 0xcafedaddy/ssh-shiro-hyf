@@ -6,7 +6,6 @@ public class MultipleDataSource extends AbstractRoutingDataSource {
 
 	@Override
 	protected Object determineCurrentLookupKey() {
-		// TODO Auto-generated method stub
 		return DynamicDataSourceHolder.getRouteKey();
 	}
 

@@ -5,26 +5,26 @@ import org.apache.shiro.web.filter.PathMatchingFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.whitehorse.qingzhi.Constants;
-import com.whitehorse.qingzhi.service.UserService;
+import com.whitehorse.qingzhi.service.ManagerService;
 
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 
 /**
- * <p>User: Zhang Kaitao
- * <p>Date: 14-2-15
- * <p>Version: 1.0
- */
+* @author hyf
+* @date 2017年4月11日
+* @description 
+*/
 public class SysUserFilter extends PathMatchingFilter {
 
     @Autowired
-    private UserService userService;
+    private ManagerService userService;
 
     @Override
     protected boolean onPreHandle(ServletRequest request, ServletResponse response, Object mappedValue) throws Exception {
 
         String username = (String)SecurityUtils.getSubject().getPrincipal();
-        request.setAttribute(Constants.CURRENT_USER, userService.findByUsername(username));
+        request.setAttribute(Constants.CURRENT_USER, userService.findByManagerAccount(username));
         return true;
     }
 }

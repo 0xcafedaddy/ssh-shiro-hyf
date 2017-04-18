@@ -2,45 +2,58 @@ package com.whitehorse.qingzhi.service;
 
 
 import java.util.List;
-import java.util.Set;
 
-import com.whitehorse.qingzhi.entity.User;
+import com.whitehorse.qingzhi.entity.UserBaseInfo;
 
 /**
- * <p>User: Zhang Kaitao
- * <p>Date: 14-1-28
- * <p>Version: 1.0
- */
+* @author hyf
+* @date 2017年4月12日
+* @description 
+*/
 public interface UserService {
+	/**
+	 * 添加用户
+	 * @param userBaseInfo
+	 * @return
+	 */
+	Integer createUser(UserBaseInfo userBaseInfo);
+	
+	List<UserBaseInfo> findAllUser();
+	
+	/**
+	 * 根据用户名查询不唯一
+	 * @param username
+	 * @return
+	 */
+	List<UserBaseInfo> findUserByUserName(String username);
+	
+	/**
+	 * 根据id删除用户
+	 * @param id
+	 * @return
+	 */
+	Integer deleteUserById(Integer id);
+	
+	/**
+	 * 根据微信id删除用户
+	 * @param wxId
+	 * @return
+	 */
+	Integer deleteUserByWX(String wxId);
+	
+	/**
+	 * 分页查询所有用户
+	 * @param page
+	 * @param size
+	 * @return
+	 */
+	List<UserBaseInfo> findUserByPage(int page, int size);
+	
+	/**
+	 * 根据微信id获取用户
+	 * @return
+	 */
+	UserBaseInfo findByOpenId(String wxId);
+	
+} 
 
-    /**
-     * 创建用户
-     * @param user
-     */
-    public User createUser(User user);
-
-    public User updateUser(User user);
-
-    public void deleteUser(Long userId);
-
-    /**
-     * 修改密码
-     * @param userId
-     * @param newPassword
-     */
-    public void changePassword(Long userId, String newPassword);
-
-
-    User findOne(Long userId);
-
-    List<User> findAll();
-
-    /**
-     * 根据用户名查找用户
-     * @param username
-     * @return
-     */
-    public User findByUsername(String username);
-
-
-}

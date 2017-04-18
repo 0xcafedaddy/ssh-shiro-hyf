@@ -12,10 +12,10 @@ import java.io.Serializable;
 import java.util.List;
 
 /**
- * <p>User: Zhang Kaitao
- * <p>Date: 14-2-8
- * <p>Version: 1.0
- */
+* @author hyf
+* @date 2017年4月11日
+* @description 
+*/
 public class MySqlSessionDAO extends CachingSessionDAO {
 
     @Autowired

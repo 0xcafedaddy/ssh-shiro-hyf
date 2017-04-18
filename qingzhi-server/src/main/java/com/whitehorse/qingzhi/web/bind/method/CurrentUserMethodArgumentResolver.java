@@ -9,11 +9,10 @@ import org.springframework.web.method.support.ModelAndViewContainer;
 import com.whitehorse.qingzhi.web.bind.annotation.CurrentUser;
 
 /**
- * <p>用于绑定@FormModel的方法参数解析器
- * <p>User: Zhang Kaitao
- * <p>Date: 13-1-12 下午5:01
- * <p>Version: 1.0
- */
+* @author hyf
+* @date 2017年4月11日
+* @description 
+*/
 public class CurrentUserMethodArgumentResolver implements HandlerMethodArgumentResolver {
 
     public CurrentUserMethodArgumentResolver() {

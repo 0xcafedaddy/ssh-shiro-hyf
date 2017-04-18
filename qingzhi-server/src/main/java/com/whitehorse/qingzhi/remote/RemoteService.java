@@ -44,8 +44,8 @@ public class RemoteService implements RemoteServiceInterface {
     @Override
     public PermissionContext getPermissions(String appKey, String username) {
         PermissionContext permissionContext = new PermissionContext();
-        permissionContext.setRoles(authorizationService.findRoles(appKey, username));
-        permissionContext.setPermissions(authorizationService.findPermissions(appKey, username));
+       /* permissionContext.setRoles(authorizationService.findRoles(appKey, username));
+        permissionContext.setPermissions(authorizationService.findPermissions(appKey, username));*/
         return permissionContext;
     }
 }

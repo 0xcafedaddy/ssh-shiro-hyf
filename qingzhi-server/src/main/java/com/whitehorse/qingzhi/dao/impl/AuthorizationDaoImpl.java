@@ -1,18 +1,12 @@
 package com.whitehorse.qingzhi.dao.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.BeanPropertyRowMapper;
-import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.PreparedStatementCreator;
-import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.orm.hibernate5.HibernateTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.whitehorse.qingzhi.dao.AuthorizationDao;
-import com.whitehorse.qingzhi.entity.Authorization;
+import com.whitehorse.qingzhi.entity.ManagerAuth;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
 import java.util.List;
 
 /**
@@ -22,41 +16,31 @@ import java.util.List;
 */
 @Repository
 public class AuthorizationDaoImpl implements AuthorizationDao {
-
+	@Autowired
+	private HibernateTemplate hibernateTemplate;
+	
 	@Override
-	public Authorization createAuthorization(Authorization authorization) {
-		// TODO Auto-generated method stub
-		return null;
+	public Integer createAuthorization(ManagerAuth authorization) {
+		int authorizationId = (int) hibernateTemplate.save(authorization);
+		return authorizationId;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
-	public Authorization updateAuthorization(Authorization authorization) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<ManagerAuth> findAuthByName(String authName) {
+		String hql = "from ManagerAuth m where m.mauthName = :authName and m.mauthIsDelete = false";
+		List<ManagerAuth> mAuthList = (List<ManagerAuth>) hibernateTemplate.findByNamedParam(hql, "authName", authName);
+		return mAuthList;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
-	public void deleteAuthorization(Long authorizationId) {
-		// TODO Auto-generated method stub
+	public List<ManagerAuth> findAll() {
+		String hql = "from ManagerAuth m where m.mauthIsDelete = false";
+		List<ManagerAuth> mAuthList = (List<ManagerAuth>) hibernateTemplate.find(hql);
 		
+		return mAuthList;
 	}
 
-	@Override
-	public Authorization findOne(Long authorizationId) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<Authorization> findAll() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Authorization findByAppUser(Long appId, Long userId) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
+	
 }

@@ -22,11 +22,10 @@ import java.lang.annotation.*;
 import com.whitehorse.qingzhi.Constants;
 
 /**
- * <p>绑定当前登录的用户</p>
- * <p>不同于@ModelAttribute</p>
- *
- * @author Zhang Kaitao
- */
+* @author hyf
+* @date 2017年4月11日
+* @description 
+*/
 @Target({ElementType.PARAMETER})
 @Retention(RetentionPolicy.RUNTIME)
 @Documented

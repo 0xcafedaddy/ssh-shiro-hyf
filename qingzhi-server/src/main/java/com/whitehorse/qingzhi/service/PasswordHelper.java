@@ -1,5 +1,6 @@
 package com.whitehorse.qingzhi.service;
 
+import org.apache.shiro.codec.Base64;
 import org.apache.shiro.crypto.RandomNumberGenerator;
 import org.apache.shiro.crypto.SecureRandomNumberGenerator;
 import org.apache.shiro.crypto.hash.SimpleHash;
@@ -7,13 +8,13 @@ import org.apache.shiro.util.ByteSource;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
-import com.whitehorse.qingzhi.entity.User;
+import com.whitehorse.qingzhi.entity.ManagerInfo;
 
 /**
- * <p>User: Zhang Kaitao
- * <p>Date: 14-1-28
- * <p>Version: 1.0
- */
+* @author hyf
+* @date 2017年4月11日
+* @description 
+*/
 @Service
 public class PasswordHelper {
 
@@ -36,16 +37,20 @@ public class PasswordHelper {
         this.hashIterations = hashIterations;
     }
 
-    public void encryptPassword(User user) {
+    /**
+     * 密码加密
+     * @param managerInfo
+     */
+    public void encryptPassword(ManagerInfo managerInfo) {
 
-        user.setSalt(randomNumberGenerator.nextBytes().toHex());
-
+    	//managerInfo.injectSalt(randomNumberGenerator.nextBytes().toHex());
+    	
         String newPassword = new SimpleHash(
                 algorithmName,
-                user.getPassword(),
-                ByteSource.Util.bytes(user.obtainCredentialsSalt()),
+                managerInfo.getManagerPassword(),
+                ByteSource.Util.bytes(managerInfo.obtainCredentialsSalt()),
                 hashIterations).toHex();
 
-        user.setPassword(newPassword);
+        managerInfo.setManagerPassword(newPassword);
     }
 }

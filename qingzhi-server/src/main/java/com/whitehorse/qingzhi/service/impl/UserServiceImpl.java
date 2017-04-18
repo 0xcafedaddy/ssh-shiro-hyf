@@ -1,82 +1,76 @@
 package com.whitehorse.qingzhi.service.impl;
 
+import java.util.List;
+
+import org.apache.shiro.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.whitehorse.qingzhi.dao.ManagerDao;
 import com.whitehorse.qingzhi.dao.UserDao;
-import com.whitehorse.qingzhi.entity.User;
-import com.whitehorse.qingzhi.service.PasswordHelper;
-import com.whitehorse.qingzhi.service.RoleService;
+import com.whitehorse.qingzhi.datasource.DataSourceKey;
+import com.whitehorse.qingzhi.entity.ManagerInfo;
+import com.whitehorse.qingzhi.entity.ManagerLog;
+import com.whitehorse.qingzhi.entity.ManagerLogEnum;
+import com.whitehorse.qingzhi.entity.UserBaseInfo;
 import com.whitehorse.qingzhi.service.UserService;
-
-import java.util.*;
+import com.whitehorse.qingzhi.utils.TimeUtil;
 
 /**
- * <p>User: Zhang Kaitao
- * <p>Date: 14-1-28
- * <p>Version: 1.0
- */
+* @author hyf
+* @date 2017年4月12日
+* @description 
+*/
 @Service
+@DataSourceKey("dataSourceUser")
+public class UserServiceImpl implements UserService{
+	
+	@Autowired
+	private UserDao userDao;
+	
+	
+	@Override
+	public Integer createUser(UserBaseInfo userBaseInfo) {
+		
+		return userDao.createUser(userBaseInfo);
+	}
 
-public class UserServiceImpl implements UserService {
+	@Override
+	public List<UserBaseInfo> findAllUser() {
+		
+		return null;
+	}
 
-    @Autowired
-    private UserDao userDao;
-    @Autowired
-    private PasswordHelper passwordHelper;
-    @Autowired
-    private RoleService roleService;
+	@Override
+	public List<UserBaseInfo> findUserByUserName(String username) {
+		
+		return userDao.findUserByUserName(username);
+	}
 
-    /**
-     * 创建用户
-     * @param user
-     */
-    public User createUser(User user) {
-        //加密密码
-        passwordHelper.encryptPassword(user);
-        return userDao.createUser(user);
-    }
+	@Override
+	public Integer deleteUserById(Integer id) {
+		
+		int result = userDao.deleteUserById(id);
+		
+		return result;
+	}
 
-    @Override
-    public User updateUser(User user) {
-        return userDao.updateUser(user);
-    }
+	@Override
+	public List<UserBaseInfo> findUserByPage(int page, int size) {
+		
+		return userDao.findUserByPage(page, size);
+	}
 
-    @Override
-    public void deleteUser(Long userId) {
-        userDao.deleteUser(userId);
-    }
+	@Override
+	public Integer deleteUserByWX(String wxId) {
+		
+		return userDao.deleteUserByWX(wxId);
+	}
 
-    /**
-     * 修改密码
-     * @param userId
-     * @param newPassword
-     */
-    public void changePassword(Long userId, String newPassword) {
-        User user =userDao.findOne(userId);
-        user.setPassword(newPassword);
-        passwordHelper.encryptPassword(user);
-        userDao.updateUser(user);
-    }
-
-    @Override
-    public User findOne(Long userId) {
-        return userDao.findOne(userId);
-    }
-
-    @Override
-    public List<User> findAll() {
-        return userDao.findAll();
-    }
-
-    /**
-     * 根据用户名查找用户
-     * @param username
-     * @return
-     */
-    public User findByUsername(String username) {
-        return userDao.findByUsername(username);
-    }
-
+	@Override
+	public UserBaseInfo findByOpenId(String wxId) {
+		
+		return userDao.findByOpenId(wxId);
+	}
 
 }

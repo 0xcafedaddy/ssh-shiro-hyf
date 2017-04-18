@@ -3,7 +3,7 @@ package com.whitehorse.qingzhi.dao;
 
 import java.util.List;
 
-import com.whitehorse.qingzhi.entity.Authorization;
+import com.whitehorse.qingzhi.entity.ManagerAuth;
 
 /**
 * @author hyf
@@ -12,12 +12,24 @@ import com.whitehorse.qingzhi.entity.Authorization;
 */
 public interface AuthorizationDao {
 
-    public Authorization createAuthorization(Authorization authorization);
-    public Authorization updateAuthorization(Authorization authorization);
-    public void deleteAuthorization(Long authorizationId);
+	/**
+	 * 创建权限
+	 * @param authorization
+	 * @return
+	 */
+    Integer createAuthorization(ManagerAuth authorization);
 
-    public Authorization findOne(Long authorizationId);
-    public List<Authorization> findAll();
+    /**
+     * 根据名字查找权限
+     * @param authName
+     * @return
+     */
+    List<ManagerAuth> findAuthByName(String authName);
 
-    public Authorization findByAppUser(Long appId, Long userId);
+    /**
+     * 查找所有权限
+     * @return
+     */
+	List<ManagerAuth> findAll();
+    
 }

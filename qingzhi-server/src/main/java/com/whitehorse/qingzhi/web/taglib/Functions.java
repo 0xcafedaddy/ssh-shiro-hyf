@@ -3,22 +3,17 @@ package com.whitehorse.qingzhi.web.taglib;
 import org.springframework.util.CollectionUtils;
 
 import com.whitehorse.qingzhi.entity.App;
-import com.whitehorse.qingzhi.entity.Resource;
-import com.whitehorse.qingzhi.entity.Role;
-import com.whitehorse.qingzhi.entity.User;
 import com.whitehorse.qingzhi.service.AppService;
-import com.whitehorse.qingzhi.service.ResourceService;
-import com.whitehorse.qingzhi.service.RoleService;
-import com.whitehorse.qingzhi.service.UserService;
+import com.whitehorse.qingzhi.service.ManagerService;
 import com.whitehorse.qingzhi.shiro.spring.SpringUtils;
 
 import java.util.Collection;
 
 /**
- * <p>User: Zhang Kaitao
- * <p>Date: 14-2-15
- * <p>Version: 1.0
- */
+* @author hyf
+* @date 2017年4月11日
+* @description 
+*/
 public class Functions {
 
     public static boolean in(Iterable iterable, Object element) {
@@ -28,13 +23,13 @@ public class Functions {
         return CollectionUtils.contains(iterable.iterator(), element);
     }
 
-    public static String username(Long userId) {
+    /*public static String username(Long userId) {
         User user = getUserService().findOne(userId);
         if(user == null) {
             return "";
         }
         return user.getUsername();
-    }
+    }*/
     public static String appName(Long appId) {
         App app = getAppService().findOne(appId);
         if(app == null) {
@@ -43,15 +38,15 @@ public class Functions {
         return app.getName();
     }
 
-    public static String roleName(Long roleId) {
+    /*public static String roleName(Long roleId) {
         Role role = getRoleService().findOne(roleId);
         if(role == null) {
             return "";
         }
         return role.getDescription();
-    }
+    }*/
 
-    public static String roleNames(Collection<Long> roleIds) {
+    /*public static String roleNames(Collection<Long> roleIds) {
         if(CollectionUtils.isEmpty(roleIds)) {
             return "";
         }
@@ -71,15 +66,15 @@ public class Functions {
         }
 
         return s.toString();
-    }
-    public static String resourceName(Long resourceId) {
+    }*/
+    /*public static String resourceName(Long resourceId) {
         Resource resource = getResourceService().findOne(resourceId);
         if(resource == null) {
             return "";
         }
         return resource.getName();
-    }
-    public static String resourceNames(Collection<Long> resourceIds) {
+    }*/
+    /*public static String resourceNames(Collection<Long> resourceIds) {
         if(CollectionUtils.isEmpty(resourceIds)) {
             return "";
         }
@@ -99,16 +94,16 @@ public class Functions {
         }
 
         return s.toString();
-    }
+    }*/
 
-    private static RoleService roleService;
-    private static ResourceService resourceService;
-    private static UserService userService;
+    /*private static RoleService roleService;
+    private static ResourceService resourceService;*/
+    private static ManagerService userService;
     private static AppService appService;
 
-    public static UserService getUserService() {
+    public static ManagerService getUserService() {
         if(userService == null) {
-            userService = SpringUtils.getBean(UserService.class);
+            userService = SpringUtils.getBean(ManagerService.class);
         }
         return userService;
     }
@@ -121,18 +116,18 @@ public class Functions {
     }
 
 
-    public static RoleService getRoleService() {
+    /*public static RoleService getRoleService() {
         if(roleService == null) {
             roleService = SpringUtils.getBean(RoleService.class);
         }
         return roleService;
-    }
+    }*/
 
-    public static ResourceService getResourceService() {
+    /*public static ResourceService getResourceService() {
         if(resourceService == null) {
             resourceService = SpringUtils.getBean(ResourceService.class);
         }
         return resourceService;
-    }
+    }*/
 }
 

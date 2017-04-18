@@ -15,10 +15,10 @@ import com.whitehorse.qingzhi.service.AppService;
 import java.util.UUID;
 
 /**
- * <p>User: Zhang Kaitao
- * <p>Date: 14-2-14
- * <p>Version: 1.0
- */
+* @author hyf
+* @date 2017年4月11日
+* @description 
+*/
 @Controller
 @RequestMapping("/app")
 public class AppController {

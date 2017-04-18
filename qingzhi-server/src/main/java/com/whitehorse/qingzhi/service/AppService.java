@@ -6,10 +6,10 @@ import java.util.List;
 import com.whitehorse.qingzhi.entity.App;
 
 /**
- * <p>User: Zhang Kaitao
- * <p>Date: 14-1-28
- * <p>Version: 1.0
- */
+* @author hyf
+* @date 2017年4月11日
+* @description 
+*/
 public interface AppService {
 
 
