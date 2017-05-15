@@ -5,8 +5,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.whitehorse.qingzhi.Constants;
-import com.whitehorse.qingzhi.entity.User;
 import com.whitehorse.qingzhi.service.UserService;
 
 /**
@@ -22,10 +20,8 @@ public class UserController {
 	private UserService userService;
 	
 	@RequestMapping(value="/getUser")
-	public @ResponseBody User getUserByName(String username){
-		User user = userService.findByUsername(username);
-		User a = user;
-		System.out.println(a);
-		return a;
+	public @ResponseBody String getUserByName(String username){
+		
+		return "登陆成功";
 	}
 }

@@ -1,12 +1,17 @@
 package com.whitehorse.qingzhi.test;
 
+import java.io.IOException;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.redisson.Redisson;
+import org.redisson.api.RBucket;
+import org.redisson.api.RedissonClient;
+import org.redisson.config.Config;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.whitehorse.qingzhi.entity.User;
 import com.whitehorse.qingzhi.service.UserService;
 
 
@@ -20,10 +25,14 @@ import com.whitehorse.qingzhi.service.UserService;
 public class UserServiceTest {
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+	private RedissonClient redissonClient;
+	
+	
 	@Test
-	public void testFindUserByName(){
+	public void testFindUserByName() throws IOException{
+		redissonClient.getKeys();
 		
-		User user = userService.findByUsername("admin");
-		System.out.println(user);
 	}
 }

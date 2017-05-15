@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:jpa="http://www.springframework.org/schema/data/jpa"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+		http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa.xsd">
+
+    <description>Redis配置</description>
+
+    <bean id="jedisPoolConfig" class="redis.clients.jedis.JedisPoolConfig"
+          p:maxIdle="10" p:maxTotal="100" p:maxWaitMillis="-1" p:testOnBorrow="true" p:testOnReturn="true"/>
+
+    <beans profile="development_redis_singleton">
+        <bean id="jedisPool" class="redis.clients.jedis.JedisPool">
+            <constructor-arg index="0" ref="jedisPoolConfig"/>
+            <constructor-arg index="1" value="${redis.host}"/>
+            <constructor-arg index="2" value="${redis.port}"/>
+            <constructor-arg index="3" value="0"/>
+        </bean>
+
+        <bean id="jedisUtils" class="com.whitehorse.qingzhi.redis.singleton.JedisUtil"/>
+        
+        <bean id="sessionUncacheService" class="com.whitehorse.qingzhi.redis.ShiroSessionUncacheService"/>
+        
+        <bean id="pubSubHandle" class="com.whitehorse.qingzhi.redis.singleton.PubSubHandle">
+            <property name="channelHandles">
+               <map>
+                  <entry key="shiro.session.uncache" value-ref="sessionUncacheService"/>
+               </map>
+            </property>
+        </bean>
+    </beans>
+
+     <beans profile="development_redis_cluster">
+        <bean id="jedisCluster" class="redis.clients.jedis.JedisCluster" destroy-method="close">
+            <constructor-arg index="0">
+                <set>
+                    <bean class="redis.clients.jedis.HostAndPort">
+                        <constructor-arg index="0" value="${redis.node1.host}"/>
+                        <constructor-arg index="1" value="${redis.node1.port}"/>
+                    </bean>
+                    <bean class="redis.clients.jedis.HostAndPort">
+                        <constructor-arg index="0" value="${redis.node2.host}"/>
+                        <constructor-arg index="1" value="${redis.node2.port}"/>
+                    </bean>
+                    <bean class="redis.clients.jedis.HostAndPort">
+                        <constructor-arg index="0" value="${redis.node3.host}"/>
+                        <constructor-arg index="1" value="${redis.node3.port}"/>
+                    </bean>
+                </set>
+            </constructor-arg>
+            <constructor-arg index="1" value="0"/>
+            <constructor-arg index="2" ref="jedisPoolConfig"/>
+        </bean>
+
+        <bean id="jedisUtil" class="com.whitehorse.qingzhi.redis.cluster.JedisUtil"/>
+        
+		<bean id="sessionUncacheService" class="com.whitehorse.qingzhi.redis.ShiroSessionUncacheService"/>
+		
+        <bean id="pubSubHandle" class="com.whitehorse.qingzhi.redis.cluster.PubSubHandle">
+            <property name="channelHandles">
+                <map>
+                    <entry key="shiro.session.uncache" value-ref="sessionUncacheService"/>
+                </map>
+            </property>
+        </bean>
+    </beans> 
+
+</beans>

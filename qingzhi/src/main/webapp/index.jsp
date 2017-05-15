@@ -1,26 +1,31 @@
-<%@ page language="java" import="java.util.*" pageEncoding="ISO-8859-1"%>
-<%
-String path = request.getContextPath();
-String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
-%>
-
+<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
-  <head>
-    <base href="<%=basePath%>">
-    
-    <title>My JSP 'index.jsp' starting page</title>
-	<meta http-equiv="pragma" content="no-cache">
-	<meta http-equiv="cache-control" content="no-cache">
-	<meta http-equiv="expires" content="0">    
-	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
-	<meta http-equiv="description" content="This is my page">
-	<!--
-	<link rel="stylesheet" type="text/css" href="styles.css">
-	-->
-  </head>
-  
-  <body>
-    This is my JSP page. <br>
-  </body>
+<head>
+<title>Login page</title>
+</head>
+<body>
+	<div id="loginDiv">
+		<form id="ff" method="post" action="<%=request.getContextPath() %>/login">
+			<div>
+				<label for="username">账号:</label>
+				<!-- 采用 js验证 -->
+				<input type="text" name="username" />
+			</div>
+			<div>
+				<label for="password">密码:</label>
+				<!-- 行内验证
+				<input class="easyui-validatebox" type="text" name="name"
+					data-options="required:true,missingMessage:'请填写密码！'" />
+					 -->
+				<input type="text" name="password" />
+			</div>
+			<div>
+				<input type="submit" value="提交" />
+			</div>
+		</form>
+		
+	</div>
+	
+</body>
 </html>

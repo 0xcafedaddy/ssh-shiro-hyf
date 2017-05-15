@@ -7,7 +7,6 @@ import org.apache.shiro.util.ByteSource;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
-import com.whitehorse.qingzhi.entity.User;
 
 /**
  * <p>User: Zhang Kaitao
@@ -36,16 +35,4 @@ public class PasswordHelper {
         this.hashIterations = hashIterations;
     }
 
-    public void encryptPassword(User user) {
-
-        user.setSalt(randomNumberGenerator.nextBytes().toHex());
-
-        String newPassword = new SimpleHash(
-                algorithmName,
-                user.getPassword(),
-                ByteSource.Util.bytes(user.obtainCredentialsSalt()),
-                hashIterations).toHex();
-
-        user.setPassword(newPassword);
-    }
 }
